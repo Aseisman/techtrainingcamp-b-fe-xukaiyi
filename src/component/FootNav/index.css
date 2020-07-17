@@ -1,0 +1,53 @@
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    /* 小圆点消失 */
+}
+
+.nav-footer {
+    background: #FFF;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px 0px 0px 1px #e1e1e1;
+}
+
+.nav-footer ul {
+    height: 50px;
+    padding-top: 6.5px;
+}
+
+.nav-footer ul li {
+    float: left;
+    text-align: center;
+    width: 25%;
+}
+
+.nav-footer ul li i {
+    display: block;
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+}
+
+.nav-footer ul li span {
+    font-size: 12px;
+}
+
+.clear-fix:after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+.flexType {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,217 @@
+/* input */
+
+input {
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    background: transparent;
+    width: 80%;
+}
+
+
+/* 搜索框部分 */
+
+.searchBG {
+    background-color: #ed4040;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 30px;
+    /* justify-content: center; */
+    background-color: white;
+    border-radius: 15px;
+}
+
+.searchIcon {
+    width: 17px;
+    margin: 8px;
+    height: 17px;
+}
+
+.content {
+    font-size: 14px;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 发布按钮 */
+
+.publish {
+    font-size: 10px;
+    color: white;
+    line-height: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.publishIcon {
+    width: 63%;
+}
+
+
+/* 每个东西的详情 */
+
+.list {
+    margin-top: 50px;
+}
+
+.box {
+    margin: 0 auto;
+    width: 96%;
+}
+
+.titleBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+}
+
+.tags {
+    margin-right: 3%;
+    font-size: 10px;
+    display: flex;
+}
+
+.tag {
+    background: rgba(238, 238, 238, 1);
+    width: auto;
+    padding-left: 5px;
+    border-radius: 10px;
+    padding-right: 5px;
+    color: rgba(0, 0, 0, 1);
+    height: 18px;
+    line-height: 18px;
+    margin: 2px;
+    max-width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userName {
+    font-size: 10px;
+    color: rgba(159, 159, 159, 1);
+}
+
+.des {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* 加了这两个注释后就能生效了我也不知道为啥 */
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    margin-top: 6px;
+    color: #000000d1;
+}
+
+.line {
+    height: 1px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+/* 搜索界面部分 */
+
+.searchBG2 {
+    background-color: white;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+}
+
+.backIcon {
+    width: 20px;
+    line-height: 45px;
+}
+
+.searchBox2 {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 30px;
+    /* justify-content: center; */
+    background-color: rgba(159, 159, 159, 0.2);
+    border-radius: 15px;
+}
+
+.searchButton {
+    font-size: 15px;
+    margin-right: 3%;
+}
+
+
+/* 竖线 */
+
+.VLine {
+    width: 1px;
+    border-right: 1px solid #dddddddd;
+}
+
+.recommend {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+
+/* 推荐关键字列表 */
+
+.keywordsBox {
+    display: flex;
+    margin-top: 6px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.keyword {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 轮播加载 */
+
+.test {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}

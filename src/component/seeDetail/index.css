@@ -1,0 +1,47 @@
+.nav {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    border-bottom: solid 1px rgba(159, 159, 159, 0.3);
+    background-color: white;
+    align-items: center;
+}
+
+.backIcon {
+    margin-left: 5px;
+}
+
+.detailtitle {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.itemTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.author {
+    font-size: 15px;
+    color: rgba(159, 159, 159, 1);
+    margin: 7px;
+}
+
+.tags {
+    display: flex;
+}
+
+.detailcontent {
+    margin: 7px;
+    margin-top: 20px;
+}
+
+.link_url {
+    margin: 7px;
+    margin-top: 20px;
+}
