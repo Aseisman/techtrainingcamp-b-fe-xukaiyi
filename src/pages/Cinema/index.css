@@ -127,6 +127,8 @@ input {
     -webkit-box-orient: vertical;
     margin-top: 6px;
     color: #000000d1;
+    font-size: 14px;
+    line-height: 23px;
 }
 
 .line {
