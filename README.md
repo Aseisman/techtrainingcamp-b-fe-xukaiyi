@@ -21,9 +21,9 @@ by 许楷沂
 
 二、实践过程
 - 首次的误打误撞之：界面架构设计
-  - 逻辑设计过程：
+  - 逻辑设计过程：  
   作为一个用了6年今日头条app的忠实粉丝，首先我便去观察了今日头条的界面架构。它现在的版本便是，搜索框是有两种demo，并且搜索界面也会随着搜索框的点击而发生改变，对此我总结了一下4种情况：
-  <img src="./src/static/img/UIframe.jpg" alt="4种情况" />
+  <img src="./src/static/img/UIframe.jpg" alt="4种情况" />  
   <!-- ![](https://github.com/Xudadaaa/techtrainingcamp-b-fe-xukaiyi/raw/master/src/static/img/UIframe.jpg) -->
   对于这4种样式，一共可以分为4种情况进行显示我们的结果列表页面，于是搜索框的部分共有2种样式。
   - 单界面与多界面（路由跳转）的选择：  
@@ -34,7 +34,8 @@ by 许楷沂
     SearchType: false,//搜索框样式：false:初始状态（无查找）true：查找状态
     listType: 0,//列表界面显示：0-推荐界面 1-推荐字界面 2-实时搜索返回关键字界面 3-查询结果界面
   ```
-  - 思考：这里的单界面模式会引起界面的重拍重绘，实属不好。。。
+  - 思考：这里的单界面模式会引起界面的重拍重绘，实属不好。。。  
+
 - 组件化开发  
   基于上面的界面架构设计，这里将几个界面设计成了组件,首页通过判断应该调用哪个组件，从而渲染该组件。
   - 搜索框的组件设计
@@ -70,7 +71,7 @@ by 许楷沂
   - 虚拟DOM和diff算法  
   从react的虚拟DOM和diff算法入手，发现实际上react和vue用的都是虚拟DOM和diff算法，虽然有些差别，但也实际上是大同小异的。  
   对于react的diff算法比vue的diff算法简洁一些。  
-  react的diff算法只用了两组指针，分别对于新DOM与旧DOM进行比较从而更新虚拟DOM再进行渲染。
+  react的diff算法只用了两组指针，分别对于新DOM与旧DOM进行比较从而更新虚拟DOM再进行渲染。  
   **注意**：对于React的diff算法，尽量不要将最后的节点移动到最前面。于是对于界面DOM树的设计我一直把这个点放在心里。
   - JSX的写法  
   一句话，将HTML写在js里面。好像很容易接受的样子。。不过就是对于js文件来说，，有些的复杂，内容比较多，看的也不容易。
@@ -81,15 +82,68 @@ by 许楷沂
   - 还有很多东西。这里不一一列举。
 
 - 进阶功能之：swiper的运用与加载动画的使用
-  - 加载动画的使用：
-    <img src="./src/static/img/caidan.gif" />
+  - 加载动画的使用：  
+    <img src="./src/static/img/caidan.gif" />  
   设计9个cube盒子，然后通过css animate让每个盒子跳动的时间不一样，从而达到这种效果。
-  - 加载动画与swiper
-  通过调用swiper.js的onSlideNextStart与onSlidePrevStart进行滑动前的初始化，滑动的时候便显示加载动画，直至请求数据完成渲染后，便隐藏该动画。
+  - 加载动画与swiper  
+  通过调用swiper.js的onSlideNextStart与onSlidePrevStart进行滑动前的初始化，滑动的时候便显示加载动画，直至请求数据完成渲染后，便隐藏该动画。  
+- axios与反向代理：  
+    通过axios返回一个promise对象，去请求接口的数据，发现会报跨域问题，基于vue项目的经验，我在react的setupproxy.js中设置了反向代理：  
+    ```
+    const proxy = require('http-proxy-middleware')
+    module.exports = function(app) {
+        app.use(proxy.createProxyMiddleware('/apis', { target: 'https://i.snssdk.com' }));
+    }
+    ```   
+    请求数据:  
+    ```
+    axios({
+            url: '/apis/search/api/study',
+            method: 'get',
+            params: {
+                keyword: this.props.searchword,
+                offset: 0
+            }
+        }).then(res => {})
+    ```   
+    不一样的是对于react的proxy写法需要调用creatProxyMiddleware方法。  
+- 部署  
+  - nginx服务器部署   
+ 由于没有个人的服务器，这里只能简要讲述一下之前开发过的部署流程：  
+ 服务器下载nginx，然后将react项目打包后的dist上传到对应的nginx的静态资源放置位置，开启nginx即可。  
+  - node 部署实际上是属于后端接口的部署，由于这个项目不用自己写接口，于是我便通过axios去获取数据，没有用到node koa等老师讲述的相关知识，不过本人已经掌握。
+  - github-page部署：github新增了一个查看项目静态界面的一个page功能，所以没有服务器的我将界面部署在了githubpage中。
+- 页面性能优化  
+  - 节流防抖：对于搜索功能来说，实时监控用户输入的内容并且去请求推荐的关键字是一个必不可少的过程，本项目通过设定一个定时器的方式，去防止用户每次输入一个字符便去请求服务器：
+  ```
+    //timer是一个定时器
+    if (this.timer) {
+            clearTimeout(this.timer)
+        }
+        //若定时器还存在，则清除定时器然后重新开始
+        if (e.target.value) {
+            this.timer = setTimeout(() => {
+                this.getKeyWords();
+            }, 300);
+            //重新设定定时器，请求完成后清除定时器
+            this.setState({
+                listType: 2
+            })
+        } else {
+            this.setState({
+                listType: 1
+            })
+    }
+  ```
+  - FCP与LCP：  
+      FCP（白屏时间）:1772.3ms  
+      LCP(最大快内容时间):2987.9ms  
+      对于这个没有图片的项目来说，这两个指标其实不会太大，更多的是github-page的DNS解析时间，获取github-page的静态资源的时间。  
+  - 如果从一个自己部署的服务器来说，那么我们可以在打包的时候将chunk分成多个小部分从而提高加载速度；将图片懒加载（这个项目没有图片。。只有一个标题栏的小图标），也可以通过预加载的方式将首页需要的数据先提前请求过来。   
 
-四、进阶功能 ：页面性能优化
-- 功能描述：通过性能分析方法学习，开发实现相关优化逻辑（可从多个常见指标纬度开展策略，比如实现图片懒/预加载、pwa等）
-- 实现要点：
-  - 通过chrome工具进行页面性能分析，对比优化前后的优化结果。
-  - 编码实现常见的性能优化逻辑，可以考虑从FCP、load等指标（开放题）
+  三、个人感想   
+   - 一方面由于之前有过一些企业的项目经验，但是对于那些企业级开发来说，他们更注重的是需求，而不是性能方面的优化，于是对于性能优化的方面其实很少涉及到。   
+   - 另一方面对于nodejs的了解其实很浅，一开始我觉得nodejs写后端服务器不如java（之前在学校学的都是java），所以就比较忽略了node这个方面的知识点，这次学习node之后，发现实际上node不比其他语言差，node其实在慢慢的改进和发展，对于一个前端攻城狮来说，学会node是一件必备的技能，于是后面的学习计划就添加了这一项。
+   - 此外，对于这个小项目来说其实还是有很多瑕疵的，对比上线的今日头条app，我发现还是存在着很多的差异，后期还要不断去思考，去改进。
 
+  **在此感谢字节跳动的老师们的辛苦教学，着实学到了很多东西！谢谢！**
