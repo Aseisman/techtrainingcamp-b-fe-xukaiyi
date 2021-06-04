@@ -24,7 +24,7 @@ by 许楷沂
 - 首次的误打误撞之：界面架构设计
   - 逻辑设计过程：  
   作为一个用了6年今日头条app的忠实粉丝，首先我便去观察了今日头条的界面架构。它现在的版本便是，搜索框是有两种demo，并且搜索界面也会随着搜索框的点击而发生改变，对此我总结了一下4种情况：
-  <img src="https://github.com/Xudadaaa/techtrainingcamp-b-fe-xukaiyi/raw/master/src/static/img/UIframe.jpg" alt="4种情况" />  
+  <img src="https://github.com/Xudadaaa/pictures/blob/master/headLines-master/UIframe.jpg" alt="4种情况" />  
   <!-- ![](https://github.com/Xudadaaa/techtrainingcamp-b-fe-xukaiyi/raw/master/src/static/img/UIframe.jpg) -->
   对于这4种样式，一共可以分为4种情况进行显示我们的结果列表页面，于是搜索框的部分共有2种样式。
   - 单界面与多界面（路由跳转）的选择：  
@@ -84,7 +84,7 @@ by 许楷沂
 
 - 进阶功能之：swiper的运用与加载动画的使用
   - 加载动画的使用：  
-    <img src="https://github.com/Xudadaaa/techtrainingcamp-b-fe-xukaiyi/raw/master/src/static/img/caidan.gif" />  
+    <img src="https://github.com/Xudadaaa/pictures/blob/master/headLines-master/caidan.gif" />  
   设计9个cube盒子，然后通过css animate让每个盒子跳动的时间不一样，从而达到这种效果。
   - 加载动画与swiper  
   通过调用swiper.js的onSlideNextStart与onSlidePrevStart进行滑动前的初始化，滑动的时候便显示加载动画，直至请求数据完成渲染后，便隐藏该动画。  
