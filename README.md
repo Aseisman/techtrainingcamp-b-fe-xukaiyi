@@ -1,7 +1,7 @@
 ### 玩转前端-北邮-字节跳动训练营项目：简易版今日头条搜索(移动端)
 
 2020-07-17
-by 许楷沂  
+by Aseisman  
 
 部署界面：https://xudadaaa.github.io/techtrainingcamp-b-fe-xukaiyi/#/
 
